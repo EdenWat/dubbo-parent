@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 导入公共配置 -->
+    <import resource="spring-dubbo-parent.xml"/>
+
+    <!-- 服务消费者缺省值配置 -->
+    <dubbo:consumer timeout="${dubbo.consumer.timeout}" loadbalance="leastactive" check="false"/>
+</beans>

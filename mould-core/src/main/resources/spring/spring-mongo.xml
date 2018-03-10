@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+    <!-- 连接池配置 -->
+    <mongo:mongo-client id="mongoClient" host="${mongo.host}" port="${mongo.port}" credentials="${mongo.credentials}">
+        <mongo:client-options connect-timeout="1000"
+                              connections-per-host="20"
+                              min-connections-per-host="1"
+                              max-wait-time="1500"
+                              socket-keep-alive="true"
+                              socket-timeout="1500"
+                              threads-allowed-to-block-for-connection-multiplier="4"/>
+    </mongo:mongo-client>
+
+    <!-- 连接池工厂配置 -->
+    <mongo:db-factory id="mongoDbFactory" dbname="${mongo.dbname}" mongo-ref="mongoClient"/>
+
+    <mongo:template id="mongoTemplate" db-factory-ref="mongoDbFactory"/>
+
+    <!-- 实体映射自动扫描注入的包 -->
+    <mongo:mapping-converter>
+        <mongo:custom-converters base-package="com.app.**.mongo.document"/>
+    </mongo:mapping-converter>
+
+    <mongo:repositories base-package="com.app.**.mongo.repository"/>
+</beans>

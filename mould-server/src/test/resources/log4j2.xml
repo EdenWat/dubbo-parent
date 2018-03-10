@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- 只处理 DEBUG 级别的日志 -->
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%xEx%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <AsyncRoot level="DEBUG">
+            <AppenderRef ref="Console"/>
+        </AsyncRoot>
+        <!-- Log4j2 自带过滤日志 -->
+        <Logger name="org.springframework" level="WARN"/>
+        <Logger name="org.mybatis" level="WARN"/>
+        <Logger name="org.apache.ibatis" level="WARN"/>
+        <Logger name="com.alibaba.druid.pool.DruidDataSource" level="WARN"/>
+        <Logger name="com.alibaba.druid.pool.PreparedStatementPool" level="WARN"/>
+        <Logger name="com.alibaba.dubbo" level="WARN"/>
+        <Logger name="org.apache.zookeeper" level="WARN"/>
+        <Logger name="org.I0Itec.zkclient" level="WARN"/>
+        <Logger name="org.jboss" level="WARN"/>
+        <!-- 屏蔽 Mybatis 的 SQL 日志 -->
+        <Logger name="com.app.server.dao" level="WARN"/>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 作业配置 -->
+    <!-- org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean 在开启 quartz 数据库时会报序列化错误 -->
+    <bean id="noQuartzJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="group" value="job"/>
+        <property name="name" value="noQuartzJobDetail"/>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="true"/>
+        <property name="jobClass" value="com.app.task.job.NoQuartzJob"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="count" value="1" value-type="java.lang.Integer"/>
+            </map>
+        </property>
+    </bean>
+    <bean id="quartzJobJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="group" value="job"/>
+        <property name="name" value="quartzJobJobDetail"/>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="true"/>
+        <property name="jobClass" value="com.app.task.job.QuartzJob"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="count" value="1" value-type="java.lang.Integer"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 触发器配置 -->
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="group" value="trigger"/>
+        <property name="name" value="simpleTrigger"/>
+        <property name="jobDetail" ref="noQuartzJobDetail"/>
+        <property name="startDelay" value="5000"/>
+        <property name="repeatInterval" value="30000"/>
+        <property name="repeatCount" value="5"/>
+    </bean>
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="group" value="trigger"/>
+        <property name="name" value="cronTrigger"/>
+        <property name="jobDetail" ref="quartzJobJobDetail"/>
+        <property name="startDelay" value="5000"/>
+        <property name="cronExpression" value="0/8 * * * * ?"/>
+    </bean>
+
+    <!-- 调度工厂配置 -->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="schedulerName" value="mould-task-scheduler"/>
+        <!-- quartz 配置文件路径 -->
+        <property name="configLocation" value="classpath:quartz.properties"/>
+        <property name="triggers">
+            <list>
+                <ref bean="simpleTrigger"/>
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+    </bean>
+</beans>

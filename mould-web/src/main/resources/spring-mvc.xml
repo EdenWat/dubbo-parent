@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 启用 MVC 注解，包括 @Controller -->
+    <context:component-scan base-package="com.app.web.controller"/>
+    <mvc:annotation-driven/>
+
+    <!-- 声明Spring拦截器 -->
+    <mvc:interceptors>
+        <!-- 请求鉴权拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!-- 排除用户登录请求 -->
+            <mvc:exclude-mapping path="/user/login"/>
+            <!-- 排除 swagger 文档 -->
+            <mvc:exclude-mapping path="/swagger*"/>
+            <mvc:exclude-mapping path="/webjars/**"/>
+            <mvc:exclude-mapping path="/**/api-docs"/>
+            <!-- 排除网站图标 -->
+            <mvc:exclude-mapping path="/*.ico"/>
+            <bean class="com.app.web.core.AuthorizationInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- jetty 不读取welcome-file-list，所以需要显式配置欢迎页 -->
+    <mvc:view-controller path="/" view-name="index"/>
+
+    <!-- 视图配置 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 启用 Swagger -->
+    <bean class="com.app.web.core.SwaggerConfig"/>
+</beans>
