@@ -19,3 +19,7 @@ target
 .settings
 .project
 .classpath
+
+# Others #
+*/logs/*
+*/dubbo/*
