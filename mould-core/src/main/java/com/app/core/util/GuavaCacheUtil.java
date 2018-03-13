@@ -19,8 +19,8 @@ import java.util.concurrent.TimeUnit;
  * @author 王建
  * @version 1.0
  */
-public class GuavaUtil {
-    private static final Logger LOG = LogManager.getLogger(GuavaUtil.class);
+public class GuavaCacheUtil {
+    private static final Logger LOG = LogManager.getLogger(GuavaCacheUtil.class);
 
     /**
      * 缓存项最大数量

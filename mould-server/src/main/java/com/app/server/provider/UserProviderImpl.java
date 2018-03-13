@@ -2,7 +2,7 @@ package com.app.server.provider;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.app.api.provider.UserProvider;
-import com.app.core.util.JWTUtil;
+import com.app.core.util.JwtUtil;
 import com.app.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +21,7 @@ public class UserProviderImpl implements UserProvider {
         boolean flag = userService.checkUser(account, password);
         if (flag) {
             // 获取 JWT Token
-            String token = JWTUtil.buildJWT(account);
+            String token = JwtUtil.buildJWT(account);
             // 装载返回数据
             map = new HashMap<>();
             map.put("account", account);

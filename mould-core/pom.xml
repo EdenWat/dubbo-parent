@@ -29,6 +29,10 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-configuration2</artifactId>
+        </dependency>
         <!-- HttpClient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -48,6 +52,11 @@
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
+        </dependency>
+        <!-- PDF 文档操作 -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
         </dependency>
         <!-- XML 格式数据处理 -->
         <dependency>

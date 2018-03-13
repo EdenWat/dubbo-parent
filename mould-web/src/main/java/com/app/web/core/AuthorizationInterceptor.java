@@ -1,6 +1,6 @@
 package com.app.web.core;
 
-import com.app.core.util.JWTUtil;
+import com.app.core.util.JwtUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -20,7 +20,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         // 获取 HTTP HEAD 中的 TOKEN
         String authorization = request.getHeader("Authorization");
         // 校验 TOKEN
-        flag = StringUtils.isNotBlank(authorization) ? JWTUtil.checkJWT(authorization) : false;
+        flag = StringUtils.isNotBlank(authorization) ? JwtUtil.checkJWT(authorization) : false;
         // 如果校验未通过，返回 401 状态
         if (!flag)
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

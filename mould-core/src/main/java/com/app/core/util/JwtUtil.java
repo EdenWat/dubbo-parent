@@ -29,7 +29,7 @@ import java.util.UUID;
  * </ol>
  */
 @Log4j2
-public class JWTUtil {
+public class JwtUtil {
     /**
      * JWT 加解密类型
      */
