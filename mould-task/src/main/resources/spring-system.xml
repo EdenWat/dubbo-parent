@@ -17,5 +17,5 @@
     <import resource="spring-quartz.xml"/>
 
     <!-- 加载RabbitMQ工具类 -->
-    <bean class="com.app.core.util.RabbitUtil"/>
+    <bean class="com.app.core.util.RabbitMQUtil"/>
 </beans>

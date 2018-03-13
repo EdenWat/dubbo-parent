@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 导入公共配置 -->
+    <import resource="spring-activemq-parent.xml"/>
+
+    <!-- Topic 消息监听容器 -->
+    <bean id="jmsTopicContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="cachingConnectionFactory"/>
+        <property name="pubSubDomain" value="true"/>
+        <property name="destinationName" value="${mq.topic}"/>
+        <property name="messageListener">
+            <bean class="${mq.topic.listener}"/>
+        </property>
+        <!-- 事务控制（开启后会显著影响消费者性能），默认为false，超过重发次数（缺省为6次）后会发送到死信队列，默认为ActiveMQ.DLQ -->
+        <property name="sessionTransacted" value="false"/>
+    </bean>
+    <!-- Queue 消息监听容器 -->
+    <bean id="jmsQueueContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="cachingConnectionFactory"/>
+        <property name="pubSubDomain" value="false"/>
+        <property name="destinationName" value="${mq.queue}"/>
+        <property name="messageListener">
+            <bean class="${mq.queue.listener}"/>
+        </property>
+        <property name="sessionTransacted" value="false"/>
+    </bean>
+</beans>

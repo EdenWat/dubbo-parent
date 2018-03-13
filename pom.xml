@@ -111,6 +111,7 @@
         <spring-rabbit.version>2.0.2.RELEASE</spring-rabbit.version>
         <rabbitmq.version>5.1.2</rabbitmq.version>
         <activemq.version>5.15.3</activemq.version>
+        <jms.version>2.0.1</jms.version>
         <zookeeper.version>3.4.11</zookeeper.version>
         <dubbo.version>2.6.0</dubbo.version>
         <cxf-core.version>3.2.2</cxf-core.version>
@@ -598,6 +599,17 @@
                 <groupId>org.apache.activemq</groupId>
                 <artifactId>activemq-client</artifactId>
                 <version>${activemq.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>geronimo-jms_1.1_spec</artifactId>
+                        <groupId>org.apache.geronimo.specs</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>javax.jms</groupId>
+                <artifactId>javax.jms-api</artifactId>
+                <version>${jms.version}</version>
             </dependency>
             <!-- JWT JAVA库 -->
             <dependency>

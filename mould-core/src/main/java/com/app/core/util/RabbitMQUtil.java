@@ -5,7 +5,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Log4j2
-public class RabbitUtil {
+public class RabbitMQUtil {
     /**
      * RabbitMQ消息发送和接收模板
      */
@@ -13,7 +13,7 @@ public class RabbitUtil {
 
     @Autowired
     public void setTemplate(RabbitTemplate template) {
-        RabbitUtil.template = template;
+        RabbitMQUtil.template = template;
     }
 
     /**

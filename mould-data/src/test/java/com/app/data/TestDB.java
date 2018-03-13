@@ -2,7 +2,7 @@ package com.app.data;
 
 import com.alibaba.fastjson.JSON;
 import com.app.core.BaseTranTestCase;
-import com.app.core.util.RabbitUtil;
+import com.app.core.util.RabbitMQUtil;
 import com.app.data.dao.UserMapper;
 import com.app.data.entity.User;
 import org.joda.time.DateTime;
@@ -26,7 +26,7 @@ public class TestDB extends BaseTranTestCase {
     @Test
     public void testMQ() {
         System.out.println("=========================");
-        RabbitUtil.send("你好，这是地球！");
+        RabbitMQUtil.send("你好，这是地球！");
         System.out.println("=========================");
     }
 
