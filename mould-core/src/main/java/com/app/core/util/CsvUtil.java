@@ -4,26 +4,16 @@ import com.app.core.code.Symbol;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-/**
- * <p>功 能：CSV文件操作工具类</p>
- * <p>版 权：Copyright (c) 2017</p>
- * <p>创建时间：2017年3月29日 上午9:54:45</p>
- *
- * @author 王建
- * @version 1.0
- */
+@Log4j2
 public class CsvUtil {
-    private static final Logger LOG = LogManager.getLogger(CsvUtil.class);
-
     /**
      * 将数据写入CSV
      *
@@ -43,14 +33,14 @@ public class CsvUtil {
             writer = new CSVWriter(new OutputStreamWriter(new FileOutputStream(csvName), StandardCharsets.UTF_8.name()), CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
             writer.writeAll(data);
         } catch (Exception e) {
-            LOG.error("将数据写入CSV出错", e);
+            log.error("将数据写入CSV出错", e);
         } finally {
             if (null != writer) {
                 try {
                     writer.flush();
                     writer.close();
                 } catch (IOException e) {
-                    LOG.error("关闭文件输出流出错", e);
+                    log.error("关闭文件输出流出错", e);
                 }
             }
         }
@@ -72,13 +62,13 @@ public class CsvUtil {
 
             list = reader.readAll();
         } catch (Exception e) {
-            LOG.error("读取CSV数据出错", e);
+            log.error("读取CSV数据出错", e);
         } finally {
             if (null != reader) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    LOG.error("关闭文件输入流出错", e);
+                    log.error("关闭文件输入流出错", e);
                 }
             }
         }

@@ -1,10 +1,9 @@
 package com.app.core.util;
 
 import com.app.core.code.Symbol;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,9 +24,8 @@ import java.util.List;
  * @author 王建
  * @version 1.0
  */
+@Log4j2
 public class PoiUtil {
-    private static final Logger LOG = LogManager.getLogger(PoiUtil.class);
-
     /**
      * 将数据写入EXCEL
      *
@@ -75,7 +73,7 @@ public class PoiUtil {
             workBook.write(out);
             workBook.close();
         } catch (Exception e) {
-            LOG.error("将数据写入EXCEL出错", e);
+            log.error("将数据写入EXCEL出错", e);
         } finally {
             try {
                 if (null != out) {
@@ -83,7 +81,7 @@ public class PoiUtil {
                     out.close();
                 }
             } catch (IOException e) {
-                LOG.error("关闭文件输出流出错", e);
+                log.error("关闭文件输出流出错", e);
             }
         }
     }
@@ -127,13 +125,13 @@ public class PoiUtil {
 
             workBook.close();
         } catch (Exception e) {
-            LOG.error("读取EXCEL中指定下标页的数据出错", e);
+            log.error("读取EXCEL中指定下标页的数据出错", e);
         } finally {
             try {
                 if (null != in)
                     in.close();
             } catch (IOException e) {
-                LOG.error("关闭文件输入流出错", e);
+                log.error("关闭文件输入流出错", e);
             }
         }
         return list;

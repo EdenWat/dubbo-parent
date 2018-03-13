@@ -3,6 +3,7 @@ package com.app.core.util;
 import com.app.core.code.Extension;
 import com.app.core.code.Symbol;
 import com.google.common.collect.Maps;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
@@ -11,8 +12,6 @@ import org.apache.commons.configuration2.builder.BuilderParameters;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.concurrent.ConcurrentMap;
@@ -25,9 +24,8 @@ import java.util.concurrent.ConcurrentMap;
  * @author 王建
  * @version 1.0
  */
+@Log4j2
 public class PropUtil {
-    private static final Logger LOG = LogManager.getLogger(PropUtil.class);
-
     /**
      * 属性文件相对路径
      */
@@ -82,7 +80,7 @@ public class PropUtil {
             // 获取属性集合
             config = builder.getConfiguration();
         } catch (Exception e) {
-            LOG.error("读取属性文件出错", e);
+            log.error("读取属性文件出错", e);
         }
         return config;
     }

@@ -2,6 +2,7 @@ package com.app.core.util;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Maps;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.collections.MapUtils;
@@ -32,8 +33,6 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.net.ssl.SSLContext;
 import java.io.File;
@@ -55,9 +54,8 @@ import java.util.Map;
  * @author 王建
  * @version 1.0
  */
+@Log4j2
 public class HttpUtil {
-    private static final Logger LOG = LogManager.getLogger(HttpUtil.class);
-
     public static final ContentType TEXT_PLAIN = ContentType.create("text/plain", StandardCharsets.UTF_8);
 
     /**
@@ -550,7 +548,7 @@ public class HttpUtil {
         try {
             registry = RegistryBuilder.<ConnectionSocketFactory>create().register("http", new PlainConnectionSocketFactory()).register("https", getSSLFactory()).build();
         } catch (Exception e) {
-            LOG.error("获取 HTTPClient注册器失败", e);
+            log.error("获取 HTTPClient注册器失败", e);
         }
 
         return registry;
