@@ -3,7 +3,6 @@ package com.app.core.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Collection;
