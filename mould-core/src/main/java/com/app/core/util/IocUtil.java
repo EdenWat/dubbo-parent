@@ -6,15 +6,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-/**
- * <p>功 能：</p>
- * <p>描 述：Spring上下文工具类</p>
- * <p>版 权：Copyright (c) 2016</p>
- * <p>创建时间：2016年7月20日 下午12:15:38</p>
- *
- * @author 王建
- * @version 1.0
- */
 @Component
 public class IocUtil implements ApplicationContextAware {
     /**

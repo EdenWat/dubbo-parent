@@ -11,14 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-/**
- * <p>功 能：PDF文件操作工具类</p>
- * <p>版 权：Copyright (c) 2017</p>
- * <p>创建时间：2017年7月15日 下午3:32:15</p>
- *
- * @author 王建
- * @version 1.0
- */
 @Log4j2
 public class PdfUtil {
     /**

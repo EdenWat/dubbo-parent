@@ -16,14 +16,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>功 能：POI EXCEL文档操作工具类</p>
- * <p>版 权：Copyright (c) 2017</p>
- * <p>创建时间：2017年3月28日 下午5:44:42</p>
- *
- * @author 王建
- * @version 1.0
- */
 @Log4j2
 public class PoiUtil {
     /**

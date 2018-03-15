@@ -1,13 +1,5 @@
 package com.app.core.code;
 
-/**
- * <p>功 能：标点符号枚举</p>
- * <p>版 权：Copyright (c) 2017</p>
- * <p>创建时间：2017年6月13日 下午5:43:13</p>
- *
- * @author 王建
- * @version 1.0
- */
 public enum Symbol {
     /**
      * 逗号

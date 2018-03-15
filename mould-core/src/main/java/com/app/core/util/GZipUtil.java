@@ -11,7 +11,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 @Log4j2
-public abstract class GZipUtil {
+public class GZipUtil {
     /**
      * 压缩GZip
      *

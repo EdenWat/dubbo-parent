@@ -16,14 +16,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.net.URL;
 import java.util.concurrent.ConcurrentMap;
 
-/**
- * <p>功 能：</p>
- * <p>版 权：Copyright (c) 2017</p>
- * <p>创建时间：2017年6月5日 下午3:52:29</p>
- *
- * @author 王建
- * @version 1.0
- */
 @Log4j2
 public class PropUtil {
     /**

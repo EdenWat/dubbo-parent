@@ -13,15 +13,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 
-/**
- * <p>功 能：</p>
- * <p>描 述：XML格式数据转换工具类</p>
- * <p>版 权：Copyright (c) 2016</p>
- * <p>创建时间：2016年6月27日 下午3:10:12</p>
- *
- * @author WangJian
- * @version 1.0
- */
 public class XmlUtil {
     /**
      * 转换不带CDDATA的XML
