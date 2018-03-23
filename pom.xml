@@ -106,7 +106,7 @@
         <spring-data-redis.version>2.0.4.RELEASE</spring-data-redis.version>
         <jedis.version>2.9.0</jedis.version>
         <memcached.version>3.0.2</memcached.version>
-        <ehcache.version>3.5.0</ehcache.version>
+        <ehcache.version>3.5.2</ehcache.version>
         <spring-retry.version>1.2.2.RELEASE</spring-retry.version>
         <spring-rabbit.version>2.0.2.RELEASE</spring-rabbit.version>
         <rabbitmq.version>5.1.2</rabbitmq.version>
@@ -837,6 +837,15 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven-source-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-source</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
                         <attach>true</attach>
                     </configuration>
@@ -846,6 +855,15 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven-javadoc-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadoc</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
                         <encoding>${file.encoding}</encoding>
                         <charset>${file.encoding}</charset>
